@@ -1,3 +1,9 @@
-export default function Pages() {
-  return <div>hello pages!!</div>;
+import Header from '@/components/Header';
+
+export default function Layout() {
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
