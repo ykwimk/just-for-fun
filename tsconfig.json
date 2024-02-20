@@ -18,8 +18,7 @@
     "declaration": true,
     "declarationMap": true,
     "paths": {
-      "@/*": ["./*"],
-      "components/*": ["./src/*"]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
