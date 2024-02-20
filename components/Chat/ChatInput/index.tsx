@@ -3,9 +3,9 @@ import { Input } from '@/components/ui/input';
 
 export default function ChatInput() {
   return (
-    <div className="flex w-full min-w-sm items-center space-x-2">
+    <div className="flex w-full items-center space-x-2">
       <Input type="text" />
-      <Button type="submit">Subscribe</Button>
+      <Button type="submit">Send</Button>
     </div>
   );
 }
