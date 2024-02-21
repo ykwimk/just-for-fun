@@ -13,7 +13,4 @@ server.listen(port, () => {
   console.log('Socket IO server listening on port ' + port);
 });
 
-socketIO.on('connection', (socket) => {
-  console.log('socket: ', socket);
-  socketIO.emit('useSuccess', '정상적으로 처리되었습니다.');
-});
+socketIO.on('connection');
