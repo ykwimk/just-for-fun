@@ -1,11 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/app/ui/avatar';
 
 interface IProps {
-  target?: 'ME' | 'YOU';
+  target: 'ME' | 'YOU';
   imgUrl?: string;
   name?: string;
-  date?: string;
-  text?: string;
+  date: string;
+  text: string;
   status?: string;
 }
 
