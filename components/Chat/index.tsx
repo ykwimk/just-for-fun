@@ -1,28 +1,27 @@
 import ChatView from './ChatView';
 import ChatInput from './ChatInput';
-import { io } from 'socket.io-client';
 import { useEffect } from 'react';
 import { useToast } from '@/app/ui/use-toast';
-import { useChatInfo } from '@/stores';
+import { useSocketIO } from '@/stores';
+import { io } from 'socket.io-client';
 
 export default function Chat() {
   const { toast } = useToast();
-  const { setChatInfo } = useChatInfo();
+  const { setSocketIO } = useSocketIO();
 
   useEffect(() => {
-    const socketIO = io('http://localhost:5000', {
+    const url = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL as string;
+
+    const socketIO = io(url, {
       reconnection: true,
     });
 
     if (socketIO) {
+      setSocketIO(socketIO);
+
       socketIO.on('connect', () => {
         toast({
           title: '채팅방에 접속되었습니다.',
-        });
-
-        setChatInfo({
-          id: socketIO.id,
-          connected: socketIO.connected,
         });
       });
 
@@ -37,7 +36,7 @@ export default function Chat() {
       });
 
       return () => {
-        socketIO.disconnect();
+        socketIO?.disconnect();
       };
     }
   }, []);

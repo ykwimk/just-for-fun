@@ -1,11 +1,11 @@
-import { IChatInfo, ICreateChatInfo } from './index.d';
+import { ICreateSocketIO, ISocketIO } from './index.d';
 import { create } from 'zustand';
 
-export const useChatInfo = create<ICreateChatInfo>((set) => ({
-  chatInfo: null,
-  setChatInfo: (newState: IChatInfo) => {
+export const useSocketIO = create<ICreateSocketIO>((set) => ({
+  socketIO: null,
+  setSocketIO(newState) {
     set(() => {
-      return { chatInfo: newState };
+      return { socketIO: newState };
     });
   },
 }));

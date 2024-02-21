@@ -1,8 +1,9 @@
-export interface IChatInfo {
-  id: string | undefined;
-  connected: boolean;
-}
-export interface ICreateChatInfo {
-  chatInfo: IChatInfo | null;
-  setChatInfo: (newState: IChatInfo) => void;
+import { DefaultEventsMap } from '@socket.io/component-emitter';
+import { Socket } from 'socket.io-client';
+
+export interface ISocketIO extends Socket<DefaultEventsMap, DefaultEventsMap> {}
+
+export interface ICreateSocketIO {
+  socketIO: ISocketIO | null;
+  setSocketIO: (newState: ISocketIO) => void;
 }

@@ -13,4 +13,14 @@ server.listen(port, () => {
   console.log('Socket IO server listening on port ' + port);
 });
 
-socketIO.on('connection');
+socketIO.on('connection', (socket) => {
+  console.log('connection userId: ', socket.id);
+
+  socket.on('sendMessage', (message) => {
+    socketIO.emit('message', { message });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('disconnect userId: ', socket.id);
+  });
+});
