@@ -17,7 +17,12 @@ export default function ChatInput() {
     e.stopPropagation();
 
     if (socketIO && value) {
-      socketIO.emit('sendMessage', { message: value, userId: socketIO.id });
+      socketIO.emit('sendMessage', {
+        userId: socketIO.id,
+        message: value,
+        date: new Date(),
+      });
+
       setValue('');
     }
   };

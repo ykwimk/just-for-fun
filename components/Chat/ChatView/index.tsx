@@ -16,8 +16,16 @@ export default function ChatView() {
     if (socketIO) {
       socketIO.on(
         'message',
-        ({ message, userId }: { message: string; userId: string }) => {
-          setMessages((prev) => [...prev, { userId, message }]);
+        ({
+          userId,
+          message,
+          date,
+        }: {
+          userId: string;
+          message: string;
+          date: Date;
+        }) => {
+          setMessages((prev) => [...prev, { userId, message, date }]);
         },
       );
     }
