@@ -1,3 +1,5 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/app/ui/avatar';
+
 interface IProps {
   target?: 'ME' | 'YOU';
   imgUrl?: string;
@@ -9,7 +11,7 @@ interface IProps {
 
 export default function ChatBubble({
   target = 'YOU',
-  imgUrl = '/docs/images/people/profile-picture-3.jpg',
+  imgUrl = 'https://github.com/shadcn.png',
   name = 'Bonnie Green',
   date = '11:46',
   text = "That's awesome. I think our users will really appreciate the improvements.",
@@ -20,7 +22,10 @@ export default function ChatBubble({
       className={`flex items-start gap-2.5 ${target === 'ME' && 'justify-end'}`}
     >
       {target === 'YOU' && (
-        <img className="w-8 h-8 rounded-full" src={imgUrl} alt={name} />
+        <Avatar>
+          <AvatarImage src={imgUrl} alt={name} />
+          <AvatarFallback>{name}</AvatarFallback>
+        </Avatar>
       )}
       <div
         className={`flex flex-col w-full max-w-[320px] leading-1.5 p-4 border-gray-200 bg-gray-100 ${
