@@ -5,22 +5,13 @@ import { useEffect } from 'react';
 
 export default function Chat() {
   useEffect(() => {
-    // const io = new Server({
-    //   cors: {
-    //     origin: 'http://localhost:3000',
-    //   },
-    // });
+    const socket = io('http://localhost:5000');
 
-    // io.listen(3000);
-    const socket = io('http://localhost:3000');
-
-    socket.connect();
-
-    // socket.on('connect', async () => {
-    //   console.log('connect!!!');
-    // });
-
-    console.log('socket: ', socket);
+    socket.on('connect', () => {
+      socket.on('useSuccess', () => {
+        console.log('success!!');
+      });
+    });
   }, []);
 
   return (
