@@ -1,4 +1,4 @@
-import { ICreateSocketIO, ISocketIO } from './index.d';
+import { ICreateSocketIO } from './index.d';
 import { create } from 'zustand';
 
 export const useSocketIO = create<ICreateSocketIO>((set) => ({

@@ -36,7 +36,7 @@ export default function Chat() {
       });
 
       return () => {
-        socketIO?.disconnect();
+        socketIO.disconnect();
       };
     }
   }, []);
