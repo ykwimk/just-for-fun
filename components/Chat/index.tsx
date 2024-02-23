@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import { useToast } from '@/app/ui/use-toast';
 import { useSocketIO, useUserInfo } from '@/stores';
 import { io } from 'socket.io-client';
+import { getStorage } from '@/lib/utils';
 
 export default function Chat() {
   const { toast } = useToast();
   const { setSocketIO } = useSocketIO();
-  const { userInfo } = useUserInfo();
+  const { userInfo, setUserInfo } = useUserInfo();
 
   useEffect(() => {
     if (userInfo) {
@@ -43,6 +44,14 @@ export default function Chat() {
       }
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    const storageNickname = getStorage({ key: 'just-a-chat-nickname' });
+
+    if (storageNickname) {
+      setUserInfo({ nickname: storageNickname });
+    }
+  }, []);
 
   return (
     <div className="w-full h-[calc(100%-56px)] p-10">

@@ -10,6 +10,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/app/ui/button';
 import { useUserInfo } from '@/stores';
+import { setStorage } from '@/lib/utils';
 
 export default function NicknameModal() {
   const { setUserInfo } = useUserInfo();
@@ -26,6 +27,7 @@ export default function NicknameModal() {
     e.stopPropagation();
 
     setUserInfo({ nickname: value });
+    setStorage({ key: 'just-a-chat-nickname', value });
   };
 
   useEffect(() => {
