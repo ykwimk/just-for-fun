@@ -1,10 +1,11 @@
 import { Button } from '@/app/ui/button';
 import { Input } from '@/components/ui/input';
-import { useSocketIO } from '@/stores';
+import { useSocketIO, useUserInfo } from '@/stores';
 import { FormEvent, useState } from 'react';
 
 export default function ChatInput() {
   const { socketIO } = useSocketIO();
+  const { userInfo } = useUserInfo();
 
   const [value, setValue] = useState<string>('');
 
@@ -21,6 +22,7 @@ export default function ChatInput() {
         userId: socketIO.id,
         message: value,
         date: new Date(),
+        nickname: userInfo?.nickname,
       });
 
       setValue('');

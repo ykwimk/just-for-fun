@@ -2,44 +2,47 @@ import ChatView from './ChatView';
 import ChatInput from './ChatInput';
 import { useEffect } from 'react';
 import { useToast } from '@/app/ui/use-toast';
-import { useSocketIO } from '@/stores';
+import { useSocketIO, useUserInfo } from '@/stores';
 import { io } from 'socket.io-client';
 
 export default function Chat() {
   const { toast } = useToast();
   const { setSocketIO } = useSocketIO();
+  const { userInfo } = useUserInfo();
 
   useEffect(() => {
-    const url = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL as string;
+    if (userInfo) {
+      const url = process.env.NEXT_PUBLIC_SOCKET_SERVER_URL as string;
 
-    const socketIO = io(url, {
-      reconnection: true,
-    });
-
-    if (socketIO) {
-      setSocketIO(socketIO);
-
-      socketIO.on('connect', () => {
-        toast({
-          title: '채팅방에 접속되었습니다.',
-        });
+      const socketIO = io(url, {
+        reconnection: true,
       });
 
-      socketIO.on('error', (error: Error) => {
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
-          description: 'There was a problem with your request.',
+      if (socketIO) {
+        setSocketIO(socketIO);
+
+        socketIO.on('connect', () => {
+          toast({
+            title: 'Connected!',
+          });
         });
 
-        console.error(error);
-      });
+        socketIO.on('error', (error: Error) => {
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: 'There was a problem with your request.',
+          });
 
-      return () => {
-        socketIO.disconnect();
-      };
+          console.error(error);
+        });
+
+        return () => {
+          socketIO.disconnect();
+        };
+      }
     }
-  }, []);
+  }, [userInfo]);
 
   return (
     <div className="w-full h-[calc(100%-56px)] p-10">

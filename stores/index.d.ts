@@ -7,3 +7,12 @@ export interface ICreateSocketIO {
   socketIO: ISocketIO | null;
   setSocketIO: (newState: ISocketIO) => void;
 }
+
+export interface IUserInfo {
+  nickname: string;
+}
+
+export interface ICreateUserInfo {
+  userInfo: IUserInfo | null;
+  setUserInfo: (newState: IUserInfo) => void;
+}

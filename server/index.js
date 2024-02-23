@@ -16,8 +16,8 @@ server.listen(port, () => {
 socketIO.on('connection', (socket) => {
   console.log('connection userId: ', socket.id);
 
-  socket.on('sendMessage', ({ userId, message, date }) => {
-    socketIO.emit('message', { userId, message, date });
+  socket.on('sendMessage', ({ userId, message, date, nickname }) => {
+    socketIO.emit('message', { userId, message, date, nickname });
   });
 
   socket.on('disconnect', () => {

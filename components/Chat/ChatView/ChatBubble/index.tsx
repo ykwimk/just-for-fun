@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/app/ui/avatar';
 interface IProps {
   target: 'ME' | 'YOU';
   imgUrl?: string;
-  name?: string;
+  nickname: string;
   date: string;
   text: string;
   status?: string;
@@ -12,7 +12,7 @@ interface IProps {
 export default function ChatBubble({
   target = 'YOU',
   imgUrl = 'https://github.com/shadcn.png',
-  name = 'Bonnie Green',
+  nickname = 'Bonnie Green',
   date = '11:46',
   text = "That's awesome. I think our users will really appreciate the improvements.",
   status = 'Delivered',
@@ -23,8 +23,8 @@ export default function ChatBubble({
     >
       {target === 'YOU' && (
         <Avatar>
-          <AvatarImage src={imgUrl} alt={name} />
-          <AvatarFallback>{name}</AvatarFallback>
+          <AvatarImage src={imgUrl} alt={nickname} />
+          <AvatarFallback>{nickname}</AvatarFallback>
         </Avatar>
       )}
       <div
@@ -36,7 +36,7 @@ export default function ChatBubble({
       >
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
           <span className="text-sm font-semibold text-gray-900 dark:text-white">
-            {name}
+            {nickname}
           </span>
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
             {date}
