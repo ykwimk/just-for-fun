@@ -1,6 +1,6 @@
 import Chat from '@/components/Chat';
 import Header from '@/components/Header';
-import NicknameModal from '@/components/NicknameModal';
+import EntryModal from '@/components/EntryModal';
 import { useUserInfo } from '@/stores';
 
 export default function Layout() {
@@ -10,7 +10,7 @@ export default function Layout() {
     <>
       <Header />
       <Chat />
-      {!userInfo && <NicknameModal />}
+      {!userInfo && <EntryModal />}
     </>
   );
 }

@@ -12,7 +12,7 @@ import { Button } from '@/app/ui/button';
 import { useUserInfo } from '@/stores';
 import { setStorage } from '@/lib/utils';
 
-export default function NicknameModal() {
+export default function EntryModal() {
   const { setUserInfo } = useUserInfo();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);

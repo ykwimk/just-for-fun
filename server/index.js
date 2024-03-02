@@ -20,6 +20,10 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('message', { userId, message, date, nickname });
   });
 
+  socket.on('sendBroadcasting', ({ userId, isTypingMessage }) => {
+    socketIO.emit('broadcasting', { userId, isTypingMessage });
+  });
+
   socket.on('disconnect', () => {
     console.log('disconnect userId: ', socket.id);
   });
