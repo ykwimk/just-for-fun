@@ -24,6 +24,10 @@ socketIO.on('connection', (socket) => {
     socketIO.emit('broadcasting', { userId, isTypingMessage });
   });
 
+  socket.on('sendIsRead', ({ userId, isRead }) => {
+    socketIO.emit('isRead', { userId, isRead });
+  });
+
   socket.on('disconnect', () => {
     console.log('disconnect userId: ', socket.id);
   });

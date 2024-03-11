@@ -18,6 +18,15 @@ export default function ChatView() {
 
   const [messages, setMessages] = useState<IMessages[]>([]);
 
+  const emitSendIsRead = (isRead: boolean) => {
+    if (socketIO) {
+      socketIO.emit('sendIsRead', {
+        userId: socketIO.id,
+        isRead,
+      });
+    }
+  };
+
   useEffect(() => {
     if (socketIO) {
       socketIO.on(
@@ -39,6 +48,16 @@ export default function ChatView() {
           ]);
         },
       );
+
+      window.addEventListener('focus', () => {
+        emitSendIsRead(true);
+      });
+
+      return () => {
+        window.removeEventListener('focus', () => {
+          emitSendIsRead(false);
+        });
+      };
     }
   }, [socketIO]);
 
