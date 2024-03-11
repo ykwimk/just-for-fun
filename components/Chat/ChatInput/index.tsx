@@ -10,14 +10,20 @@ export default function ChatInput() {
   const [value, setValue] = useState<string>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
+  const sendBroadcasting = (isTypingMessage: boolean) => {
+    if (socketIO) {
+      socketIO.emit('sendBroadcasting', {
+        userId: socketIO.id,
+        isTypingMessage,
+      });
+    }
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     if (socketIO) {
-      socketIO.emit('sendBroadcasting', {
-        userId: socketIO.id,
-        isTypingMessage: !!value.length,
-      });
+      sendBroadcasting(!!value.length);
     }
 
     setValue(value);
@@ -35,6 +41,7 @@ export default function ChatInput() {
         nickname: userInfo?.nickname,
       });
 
+      sendBroadcasting(false);
       setValue('');
     }
   };
