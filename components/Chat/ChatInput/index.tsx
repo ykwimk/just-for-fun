@@ -35,6 +35,7 @@ export default function ChatInput() {
 
     if (socketIO && value) {
       socketIO.emit('sendMessage', {
+        type: 'TALK',
         userId: socketIO.id,
         message: value,
         date: new Date(),

@@ -1,4 +1,4 @@
-import { ICreateSocketIO, ICreateUserInfo } from './index.d';
+import { ICreateSocketIO, ICreateUserInfo, ICreateMessages } from './index.d';
 import { create } from 'zustand';
 
 export const useSocketIO = create<ICreateSocketIO>((set) => ({
@@ -15,6 +15,15 @@ export const useUserInfo = create<ICreateUserInfo>((set) => ({
   setUserInfo(newState) {
     set(() => {
       return { userInfo: newState };
+    });
+  },
+}));
+
+export const useMessages = create<ICreateMessages>((set) => ({
+  messages: [],
+  setMessages(newState) {
+    set((state) => {
+      return { messages: [...state.messages, newState] };
     });
   },
 }));

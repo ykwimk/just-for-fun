@@ -16,3 +16,16 @@ export interface ICreateUserInfo {
   userInfo: IUserInfo | null;
   setUserInfo: (newState: IUserInfo) => void;
 }
+
+export interface IMessages {
+  type: string;
+  message: string;
+  userId: string | undefined;
+  date: string;
+  nickname: string;
+}
+
+export interface ICreateMessages {
+  messages: IMessages[];
+  setMessages: (newState: IMessages) => void;
+}

@@ -1,4 +1,5 @@
 import ChatView from './ChatView';
+import dayjs from 'dayjs';
 import ChatInput from './ChatInput';
 import { useEffect } from 'react';
 import { useToast } from '@/app/ui/use-toast';
@@ -23,6 +24,14 @@ export default function Chat() {
         setSocketIO(socketIO);
 
         socketIO.on('connect', () => {
+          socketIO.emit('sendMessage', {
+            type: 'NOTICE',
+            message: '',
+            userId: socketIO.id,
+            date: dayjs(new Date()).format('hh:mm A'),
+            nickname: userInfo.nickname,
+          });
+
           toast({
             title: 'Connected!',
           });

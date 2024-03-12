@@ -51,7 +51,7 @@ export default function ChatBubble({
         } dark:bg-gray-700`}
       >
         {target === 'ME' && !isRead && (
-          <span className="bottom-1.5 -left-5 absolute w-2.5 h-2.5 bg-yellow-400 rounded-full" />
+          <span className="bottom-1.5 -left-3 absolute w-1.5 h-1.5 bg-yellow-400 rounded-full" />
         )}
         <div className="flex items-center space-x-2 rtl:space-x-reverse">
           <span className="text-sm font-semibold text-gray-900 dark:text-white">
