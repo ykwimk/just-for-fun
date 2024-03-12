@@ -7,7 +7,7 @@ const socketIO = require('socket.io')(server, { cors: { origin: '*' } });
 
 app.use(cors());
 
-const port = 5000;
+const port = 3030;
 
 server.listen(port, () => {
   console.log('Socket IO server listening on port ' + port);
