@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/app/ui/button';
 import { useUserInfo } from '@/stores';
 import { setStorage } from '@/lib/utils';
+import { Label } from '@radix-ui/react-label';
+import Picture from './Picture';
 
 export default function EntryModal() {
   const { setUserInfo } = useUserInfo();
@@ -47,6 +49,9 @@ export default function EntryModal() {
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="w-full py-4">
+            <div className="mb-4">
+              <Picture />
+            </div>
             <div className="w-full">
               <Input
                 type="text"
