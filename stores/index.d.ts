@@ -10,6 +10,7 @@ export interface ICreateSocketIO {
 
 export interface IUserInfo {
   nickname: string;
+  profileImage?: string;
 }
 
 export interface ICreateUserInfo {
@@ -23,6 +24,7 @@ export interface IMessages {
   userId: string | undefined;
   date: string;
   nickname: string;
+  profileImage?: string;
 }
 
 export interface ICreateMessages {

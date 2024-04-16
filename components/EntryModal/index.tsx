@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/app/ui/button';
 import { useUserInfo } from '@/stores';
 import { setStorage } from '@/lib/utils';
-import { Label } from '@radix-ui/react-label';
 import Picture from './Picture';
 
 export default function EntryModal() {
@@ -19,6 +18,9 @@ export default function EntryModal() {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
+  const [profileImage, setProfileImage] = useState<string | undefined>(
+    undefined,
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -28,8 +30,10 @@ export default function EntryModal() {
     e.preventDefault();
     e.stopPropagation();
 
-    setUserInfo({ nickname: value });
+    setUserInfo({ nickname: value, profileImage });
+
     setStorage({ key: 'just-a-chat-nickname', value });
+    setStorage({ key: 'just-a-chat-profileImage', value: profileImage });
   };
 
   useEffect(() => {
@@ -50,7 +54,10 @@ export default function EntryModal() {
         <form onSubmit={handleSubmit}>
           <div className="w-full py-4">
             <div className="mb-4">
-              <Picture />
+              <Picture
+                profileImage={profileImage}
+                setProfileImage={setProfileImage}
+              />
             </div>
             <div className="w-full">
               <Input

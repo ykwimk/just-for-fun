@@ -25,13 +25,21 @@ export default function ChatView() {
     if (socketIO) {
       socketIO.on(
         'message',
-        ({ type, userId, message, date, nickname }: IMessages) => {
+        ({
+          type,
+          userId,
+          message,
+          date,
+          nickname,
+          profileImage,
+        }: IMessages) => {
           setMessages({
             type,
             userId,
             message,
             date: dayjs(date).format('hh:mm A'),
             nickname,
+            profileImage,
           });
         },
       );
@@ -68,6 +76,7 @@ export default function ChatView() {
             date={item.date}
             nickname={item.nickname}
             target={item.userId === socketIO?.id ? 'ME' : 'YOU'}
+            imgUrl={item.profileImage}
           />
         );
       })}

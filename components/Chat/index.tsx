@@ -30,6 +30,7 @@ export default function Chat() {
             userId: socketIO.id,
             date: dayjs(new Date()).format('hh:mm A'),
             nickname: userInfo.nickname,
+            profileImage: userInfo?.profileImage,
           });
 
           toast({
@@ -56,9 +57,13 @@ export default function Chat() {
 
   useEffect(() => {
     const storageNickname = getStorage({ key: 'just-a-chat-nickname' });
+    const storageProfileImage = getStorage({ key: 'just-a-chat-profileImage' });
 
     if (storageNickname) {
-      setUserInfo({ nickname: storageNickname });
+      setUserInfo({
+        nickname: storageNickname,
+        profileImage: storageProfileImage,
+      });
     }
   }, []);
 

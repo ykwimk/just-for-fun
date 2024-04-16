@@ -16,9 +16,19 @@ server.listen(port, () => {
 socketIO.on('connection', (socket) => {
   console.log('connection userId: ', socket.id);
 
-  socket.on('sendMessage', ({ type, userId, message, date, nickname }) => {
-    socketIO.emit('message', { type, userId, message, date, nickname });
-  });
+  socket.on(
+    'sendMessage',
+    ({ type, userId, message, date, nickname, profileImage }) => {
+      socketIO.emit('message', {
+        type,
+        userId,
+        message,
+        date,
+        nickname,
+        profileImage,
+      });
+    },
+  );
 
   socket.on('sendBroadcasting', ({ userId, isTypingMessage }) => {
     socketIO.emit('broadcasting', { userId, isTypingMessage });

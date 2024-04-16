@@ -40,6 +40,7 @@ export default function ChatInput() {
         message: value,
         date: new Date(),
         nickname: userInfo?.nickname,
+        profileImage: userInfo?.profileImage,
       });
 
       emitSendBroadcasting(false);
