@@ -32,8 +32,12 @@ export default function EntryModal() {
 
     setUserInfo({ nickname: value, profileImage });
 
-    setStorage({ key: 'just-a-chat-nickname', value });
-    setStorage({ key: 'just-a-chat-profileImage', value: profileImage });
+    const chatValue = {
+      nickname: value,
+      profileImage,
+    };
+
+    setStorage({ key: 'just-a-chat', value: chatValue });
   };
 
   useEffect(() => {

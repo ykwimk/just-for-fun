@@ -56,13 +56,12 @@ export default function Chat() {
   }, [userInfo]);
 
   useEffect(() => {
-    const storageNickname = getStorage({ key: 'just-a-chat-nickname' });
-    const storageProfileImage = getStorage({ key: 'just-a-chat-profileImage' });
+    const storage = getStorage({ key: 'just-a-chat' });
 
-    if (storageNickname) {
+    if (storage) {
       setUserInfo({
-        nickname: storageNickname,
-        profileImage: storageProfileImage,
+        nickname: storage.nickname,
+        profileImage: storage?.profileImage,
       });
     }
   }, []);
