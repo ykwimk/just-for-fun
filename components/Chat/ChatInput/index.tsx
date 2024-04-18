@@ -1,6 +1,7 @@
 import { Button } from '@/app/ui/button';
 import { Input } from '@/components/ui/input';
 import { useSocketIO, useUserInfo } from '@/stores';
+import { Paperclip } from 'lucide-react';
 import { FormEvent, useEffect, useState } from 'react';
 
 export default function ChatInput() {
@@ -63,6 +64,9 @@ export default function ChatInput() {
         onSubmit={handleSubmit}
       >
         <Input type="text" value={value} onChange={handleChange} />
+        <Button type="submit" variant="outline">
+          <Paperclip className="w-4 h-4" />
+        </Button>
         <Button type="submit">Send</Button>
       </form>
       {isTyping && (
