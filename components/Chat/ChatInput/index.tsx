@@ -2,11 +2,13 @@ import { Button } from '@/app/ui/button';
 import { Input } from '@/components/ui/input';
 import { useSocketIO, useUserInfo } from '@/stores';
 import { Paperclip } from 'lucide-react';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 export default function ChatInput() {
   const { socketIO } = useSocketIO();
   const { userInfo } = useUserInfo();
+
+  const fileRef = useRef<any>(null);
 
   const [value, setValue] = useState<string>('');
   const [isTyping, setIsTyping] = useState<boolean>(false);
@@ -30,6 +32,13 @@ export default function ChatInput() {
     setValue(value);
   };
 
+  const handleClick = () => {
+    if (fileRef.current) {
+      fileRef.current.value = null;
+      fileRef.current.click();
+    }
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -45,6 +54,7 @@ export default function ChatInput() {
       });
 
       emitSendBroadcasting(false);
+
       setValue('');
     }
   };
@@ -64,8 +74,9 @@ export default function ChatInput() {
         onSubmit={handleSubmit}
       >
         <Input type="text" value={value} onChange={handleChange} />
-        <Button type="submit" variant="outline">
+        <Button type="button" variant="outline" onClick={handleClick}>
           <Paperclip className="w-4 h-4" />
+          <Input type="file" ref={fileRef} hidden />
         </Button>
         <Button type="submit">Send</Button>
       </form>
