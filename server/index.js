@@ -18,7 +18,15 @@ socketIO.on('connection', (socket) => {
 
   socket.on(
     'sendMessage',
-    ({ type, userId, message, date, nickname, profileImage }) => {
+    ({
+      type,
+      userId,
+      message,
+      date,
+      nickname,
+      profileImage,
+      attachmentFile,
+    }) => {
       socketIO.emit('message', {
         type,
         userId,
@@ -26,6 +34,7 @@ socketIO.on('connection', (socket) => {
         date,
         nickname,
         profileImage,
+        attachmentFile,
       });
     },
   );

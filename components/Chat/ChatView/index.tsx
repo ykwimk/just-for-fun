@@ -32,6 +32,7 @@ export default function ChatView() {
           date,
           nickname,
           profileImage,
+          attachmentFile,
         }: IMessages) => {
           setMessages({
             type,
@@ -40,6 +41,7 @@ export default function ChatView() {
             date: dayjs(date).format('hh:mm A'),
             nickname,
             profileImage,
+            attachmentFile,
           });
         },
       );
@@ -77,6 +79,7 @@ export default function ChatView() {
             nickname={item.nickname}
             target={item.userId === socketIO?.id ? 'ME' : 'YOU'}
             imgUrl={item.profileImage}
+            attachmentFile={item.attachmentFile}
           />
         );
       })}

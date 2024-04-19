@@ -25,6 +25,10 @@ export interface IMessages {
   date: string;
   nickname: string;
   profileImage?: string;
+  attachmentFile?: {
+    name: string;
+    file: string;
+  };
 }
 
 export interface ICreateMessages {

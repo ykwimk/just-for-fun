@@ -1,7 +1,8 @@
+import { Badge } from '@/app/ui/badge';
 import { Button } from '@/app/ui/button';
 import { Input } from '@/components/ui/input';
 import { useSocketIO, useUserInfo } from '@/stores';
-import { Paperclip } from 'lucide-react';
+import { Paperclip, X } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
 export default function ChatInput() {
@@ -11,6 +12,7 @@ export default function ChatInput() {
   const fileRef = useRef<any>(null);
 
   const [value, setValue] = useState<string>('');
+  const [file, setFile] = useState<{ [key: string]: any } | null>(null);
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
   const emitSendBroadcasting = (isTypingMessage: boolean) => {
@@ -39,6 +41,26 @@ export default function ChatInput() {
     }
   };
 
+  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files as FileList;
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      const result = fileReader.result as string;
+
+      setFile({
+        name: files[0].name,
+        result,
+      });
+    };
+
+    fileReader.readAsDataURL(files[0]);
+  };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+  };
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -51,11 +73,18 @@ export default function ChatInput() {
         date: new Date(),
         nickname: userInfo?.nickname,
         profileImage: userInfo?.profileImage,
+        attachmentFile: file
+          ? {
+              name: file?.name,
+              file: file?.result,
+            }
+          : undefined,
       });
 
       emitSendBroadcasting(false);
 
       setValue('');
+      setFile(null);
     }
   };
 
@@ -76,12 +105,27 @@ export default function ChatInput() {
         <Input type="text" value={value} onChange={handleChange} />
         <Button type="button" variant="outline" onClick={handleClick}>
           <Paperclip className="w-4 h-4" />
-          <Input type="file" ref={fileRef} hidden />
+          <Input type="file" ref={fileRef} onChange={handleFile} hidden />
         </Button>
         <Button type="submit">Send</Button>
       </form>
       {isTyping && (
-        <div className="absolute -bottom-1 left-1 text-xs">Typing...</div>
+        <div className="absolute -bottom-3 left-1 text-xs">Typing...</div>
+      )}
+      {file && (
+        <Badge
+          variant="outline"
+          className="absolute -bottom-3 right-1 text-xs flex center leading-[100%]"
+        >
+          {file.name}
+          <button
+            type="button"
+            className="inline-block w-4 h-4 ml-1"
+            onClick={handleRemoveFile}
+          >
+            <X className="w-full h-full" />
+          </button>
+        </Badge>
       )}
     </div>
   );
