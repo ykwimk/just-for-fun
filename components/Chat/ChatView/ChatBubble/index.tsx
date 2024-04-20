@@ -87,6 +87,9 @@ export default function ChatBubble({
                 : 'rounded-l-xl rounded-br-xl'
             } dark:bg-gray-700`}
           >
+            {target === 'ME' && !isRead && (
+              <span className="bottom-1.5 -left-3 absolute w-1.5 h-1.5 bg-yellow-400 rounded-full" />
+            )}
             <div className="flex items-center gap-2 text-sm font-normal text-gray-900 dark:text-white">
               {attachmentFile.name}{' '}
               <Button variant="outline" className="px-3 rounded-full" asChild>
