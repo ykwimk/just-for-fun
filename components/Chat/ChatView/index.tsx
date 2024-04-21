@@ -4,7 +4,7 @@ import { useMessages, useSocketIO } from '@/stores';
 import { useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
 import { IMessages } from '@/stores/index.d';
-import ChatAlarm from './ChatAlarm';
+import ChatNoticeAlarm from './ChatNoticeAlarm';
 
 export default function ChatView() {
   const { socketIO } = useSocketIO();
@@ -68,7 +68,7 @@ export default function ChatView() {
     <Card className="w-full h-full flex flex-col flex-nowrap [&>div:first-child]:mt-auto gap-2.5 mb-5 p-3 bg-gray-600 overflow-auto">
       {messages.map((item: IMessages, index: number) => {
         if (item.type === 'NOTICE') {
-          return <ChatAlarm key={index} nickname={item.nickname} />;
+          return <ChatNoticeAlarm key={index} nickname={item.nickname} />;
         }
 
         return (
