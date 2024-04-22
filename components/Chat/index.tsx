@@ -6,6 +6,7 @@ import { useToast } from '@/app/ui/use-toast';
 import { useSocketIO, useUserInfo } from '@/stores';
 import { io } from 'socket.io-client';
 import { getStorage } from '@/lib/utils';
+import ChatNumberPeople from './ChatNumberPeople';
 
 export default function Chat() {
   const { toast } = useToast();
@@ -69,6 +70,7 @@ export default function Chat() {
   return (
     <div className="w-full h-[calc(100%-56px)] p-10">
       <div className="max-w-md h-full m-auto flex flex-col">
+        <ChatNumberPeople />
         <ChatView />
         <ChatInput />
       </div>
