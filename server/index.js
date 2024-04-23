@@ -13,8 +13,12 @@ server.listen(port, () => {
   console.log('Socket IO server listening on port ' + port);
 });
 
+let chatMembers = [];
+
 socketIO.on('connection', (socket) => {
   console.log('connection userId: ', socket.id);
+
+  chatMembers.push(socket.id);
 
   socket.on(
     'sendMessage',
@@ -39,6 +43,8 @@ socketIO.on('connection', (socket) => {
     },
   );
 
+  socketIO.emit('chatMembers', { chatMembers });
+
   socket.on('sendBroadcasting', ({ userId, isTypingMessage }) => {
     socketIO.emit('broadcasting', { userId, isTypingMessage });
   });
@@ -49,5 +55,7 @@ socketIO.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log('disconnect userId: ', socket.id);
+
+    chatMembers = chatMembers.filter((value) => value !== socket.id);
   });
 });
