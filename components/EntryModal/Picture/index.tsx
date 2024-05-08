@@ -1,6 +1,5 @@
 import { Input } from '@/components/ui/input';
 import { Label } from '@radix-ui/react-label';
-import { css } from '@emotion/react';
 import { Dispatch, SetStateAction } from 'react';
 
 interface IProps {
@@ -23,7 +22,19 @@ export default function Picture({ profileImage, setProfileImage }: IProps) {
   };
 
   return (
-    <div css={picture}>
+    <div
+      style={{
+        width: '80px',
+        height: '80px',
+        margin: '0 auto',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        backgroundImage: 'url("/images/icon-profile.png")',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: '100%',
+      }}
+    >
       <Label
         htmlFor="picture"
         className="block cursor-pointer w-full h-full -indent-96"
@@ -48,13 +59,3 @@ export default function Picture({ profileImage, setProfileImage }: IProps) {
     </div>
   );
 }
-
-const picture = css`
-  width: 80px;
-  height: 80px;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
-  background: url('/images/icon-profile.png') no-repeat center;
-  background-size: 100%;
-`;
