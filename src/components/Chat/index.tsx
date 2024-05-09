@@ -1,9 +1,11 @@
+'use client';
+
 import ChatView from './ChatView';
 import dayjs from 'dayjs';
 import ChatInput from './ChatInput';
 import { useEffect } from 'react';
-import { useToast } from '@/app/ui/use-toast';
-import { useSocketIO, useUserInfo } from '@/stores';
+import { useToast } from '@/src/app/ui/use-toast';
+import { useSocketIO, useUserInfo } from '@/src/stores';
 import { io } from 'socket.io-client';
 import { getStorage } from '@/lib/utils';
 import ChatNumberPeople from './ChatNumberPeople';

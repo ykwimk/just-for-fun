@@ -1,9 +1,9 @@
-import { Card } from '@/app/ui/card';
+import { Card } from '@/src/app/ui/card';
 import ChatBubble from './ChatBubble';
-import { useMessages, useSocketIO } from '@/stores';
+import { useMessages, useSocketIO } from '@/src/stores';
 import { useEffect, useRef } from 'react';
 import dayjs from 'dayjs';
-import { IMessages } from '@/stores/index.d';
+import { IMessages } from '@/src/stores';
 import ChatNoticeAlarm from './ChatNoticeAlarm';
 
 export default function ChatView() {

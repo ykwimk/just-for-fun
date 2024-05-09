@@ -1,7 +1,7 @@
-import { Badge } from '@/app/ui/badge';
-import { Button } from '@/app/ui/button';
-import { Input } from '@/components/ui/input';
-import { useSocketIO, useUserInfo } from '@/stores';
+import { Badge } from '@/src/app/ui/badge';
+import { Button } from '@/src/app/ui/button';
+import { Input } from '@/src/components/ui/input';
+import { useSocketIO, useUserInfo } from '@/src/stores';
 import { Paperclip, X } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 

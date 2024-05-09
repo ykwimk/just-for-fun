@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Dialog,
   DialogContent,
@@ -5,11 +7,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from '@/app/ui/dialog';
+} from '@/src/app/ui/dialog';
 import { FormEvent, useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/app/ui/button';
-import { useUserInfo } from '@/stores';
+import { Input } from '@/src/components/ui/input';
+import { Button } from '@/src/app/ui/button';
+import { useUserInfo } from '@/src/stores';
 import { setStorage } from '@/lib/utils';
 import Picture from './Picture';
 

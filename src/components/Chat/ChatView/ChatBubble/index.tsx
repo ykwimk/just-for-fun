@@ -1,6 +1,6 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/app/ui/avatar';
-import { Button } from '@/app/ui/button';
-import { useSocketIO } from '@/stores';
+import { Avatar, AvatarFallback, AvatarImage } from '@/src/app/ui/avatar';
+import { Button } from '@/src/app/ui/button';
+import { useSocketIO } from '@/src/stores';
 import { Download } from 'lucide-react';
 import { useEffect, useState } from 'react';
 

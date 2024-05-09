@@ -1,5 +1,5 @@
-import { Badge } from '@/app/ui/badge';
-import { useSocketIO } from '@/stores';
+import { Badge } from '@/src/app/ui/badge';
+import { useSocketIO } from '@/src/stores';
 import { UsersRound } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
